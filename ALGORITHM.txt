@@ -1,0 +1,49 @@
+ALGORITHM lgofthesentence
+VAR
+
+    sentence: string;
+    i: INTEGER := 0; 
+    e: INTEGER  := 0; 
+    n: INTEGER := 0;
+
+
+BEGIN
+
+REPEAT
+    write("write a sentence that ends with a point");
+    read(sentence);
+UNTIL (sentence[0]<>'') //pour assurer que l'utilisateur a saisi une phrase
+
+
+
+WHILE (sentence[i]<>'.') DO  //dans l'hypothèse la phrase se termine par un point
+    IF (sentence[i]=' ') THEN //recherche des espaces
+        e := e+1;
+    ELSE
+        SWITCH (sentence[i]) DO //recherche des voyelles
+            case "a" : n := n+1; break;
+            case "e" : n := n+1; break;
+            case "o" : n := n+1; break;
+            case "u" : n := n+1; break;
+            case "i" : n := n+1; break;
+            case "y" : n := n+1; break;
+        END_SWITCH
+    END_IF    
+        i := i+1;
+END_WHILE
+
+
+    write("length of the sentence = ", i+1);
+    write("nbr of vowels =", n);
+
+//la phrase peut se commencer par un espace et/ou se terminer par un espace avant le point 
+
+IF ((sentence[0]=' ' and sentence[i-1]<>' ') or (sentence[0]<>' ' and sentence[i-1]=' ') ) THEN
+    write("Nbr of words =", e);   
+ELSE_IF (sentence[0]=' ' and sentence[i-1]=' ') THEN
+    write("Nbr of words =", e-1);
+ELSE
+    write("Nbr of words =", e+1);
+END_IF
+
+END
